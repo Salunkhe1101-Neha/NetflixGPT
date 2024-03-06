@@ -15,6 +15,8 @@
 - From validation
 - useRefHook
 - From authentication  ---> firebase
+- Created redux-store with userSlice
+
 
 
 # Features
