@@ -7,49 +7,45 @@ import { useSelector } from 'react-redux'
 import { addUser, removeUser } from '../utils/userSlice'
 import { useDispatch } from "react-redux"
 const Header = () => {
-  const dispatch=useDispatch();
-  const navigate=useNavigate();
-  const user=useSelector((store)=>store.user);
-  const handleSignOut=()=>
-  {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((store) => store.user);
+  const handleSignOut = () => {
     signOut(auth)
-    .then(()=>{})
-    .catch((error)=> navigate('/error'));
+      .then(() => { })
+      .catch((error) => navigate('/error'));
   }
-  useEffect(()=>
-  {
-      onAuthStateChanged(auth, (user)=>
-      {
-          if(user)
-          {
-              const{uid,email,userName}=auth;
-              dispatch(addUser({
-                uid:uid,
-                email:email,
-                userName:userName
-              }));
-            navigate("/browse"); 
-          }
-          else{
-              // User signed out
-              dispatch(removeUser());
-              navigate("/");
-          }
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, userName } = auth;
+        dispatch(addUser({
+          uid: uid,
+          email: email,
+          userName: userName
+        }));
+        navigate("/browse");
+      }
+      else {
+        // User signed out
+        dispatch(removeUser());
+        navigate("/");
+      }
 
-      })
-  },[])
+    })
+  }, [])
   return (
-    <div className='z-10 absolute w-[100%] px-12 py-2 bg-gradient-to-b from-black flex justify-between items-center'>
-     
-     <img src={Netflix_logo} alt='Netflix_logo'className='h-[80px]'></img>
-     {
-        user  &&
-      <div className='flex justify-between gap-4'>
-      <img alt='alternative img'></img>
-      <button onClick={handleSignOut}>Sign out</button>
-    </div>
-     }
-     
+    <div className='text-white z-10 absolute w-[100%] px-12 py-2 bg-gradient-to-b from-black flex justify-between items-center'>
+
+      <img src={Netflix_logo} alt='Netflix_logo' className='h-[60px]'></img>
+      {
+        user &&
+        <div className='flex justify-between gap-4'>
+          <img alt='alternative img'></img>
+          <button onClick={handleSignOut}>Sign out</button>
+        </div>
+      }
+
     </div>
   )
 }
