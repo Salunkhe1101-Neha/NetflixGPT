@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { addUser, removeUser } from '../utils/userSlice'
 import { useDispatch } from "react-redux"
+import { toggleGptSearchView } from '../utils/gptSlice'
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,6 +35,12 @@ const Header = () => {
 
     })
   }, [])
+
+  const handleSearchGPT= ()=>{
+     dispatch(toggleGptSearchView())
+  }
+  
+
   return (
     <div className='text-white z-10 absolute w-[100%] px-12 py-2 bg-gradient-to-b from-black flex justify-between items-center'>
 
@@ -41,6 +48,7 @@ const Header = () => {
       {
         user &&
         <div className='flex justify-between gap-4'>
+          <button onClick={handleSearchGPT}>Search GPT</button>
           <img alt='alternative img'></img>
           <button onClick={handleSignOut}>Sign out</button>
         </div>
