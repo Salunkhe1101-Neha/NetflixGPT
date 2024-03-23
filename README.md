@@ -26,6 +26,9 @@
 - fetch data for trailer video Data
 - Embeded the yt video and make it autoplay and muted
 - Tailwind classes to make it look awesome
+- Implimented GptSearch page
+- Gpt search bar
+
 
 
 
